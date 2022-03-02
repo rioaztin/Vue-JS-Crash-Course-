@@ -1,18 +1,47 @@
 <template>
-<div class="container">
-  <HeaderPage />
-  
-</div>
+  <div class="container">
+    <HeaderPage title="Task Tracker" />
+    <TasksItem :task="tasks" />
+  </div>
 </template>
 
 <script>
 import HeaderPage from './components/Header'
+import TasksItem from './components/Tasks'
 
 export default {
   name: "App",
   components: {
     HeaderPage,
+    TasksItem
   },
+  data() {
+    return {
+      tasks: []
+    }
+  },
+  created() {
+    this.task = [
+      {
+        id: 1,
+        text: 'Doctors Appointment',
+        day: 'Macrh 1st at 2:30pm',
+        reminder: true,
+      },
+      {
+        id: 2,
+        text: 'Meeting at School',
+        day: 'Macrh 3rd at 1:30pm',
+        reminder: true,
+      },
+      {
+        id: 3,
+        text: 'Food Shopping',
+        day: 'Macrh 3rd at 11:00am',
+        reminder: false,
+      },
+    ]
+  }
 };
 </script>
 
@@ -28,7 +57,7 @@ body {
 }
 .container {
   max-width: 500px;
-  margin: 30px auto;
+  margin: 30px 20px;
   overflow: auto;
   min-height: 300px;
   border: 1px solid steelblue;
