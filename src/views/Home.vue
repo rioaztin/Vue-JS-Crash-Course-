@@ -1,25 +1,28 @@
 <template>
 <div>
-    <div v-show="showAddTask">
-    <AddTask @add-task="addTask" />
-    </div>
+    <AddTask v-show="showAddTask" @add-task="addTask" />
     <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks" />
 </div>
 </template>
 
 <script>
-    import Tasks from './components/Tasks'
-    import AddTask from './components/AddTask'
+    import Tasks from '../components/Tasks'
+    import AddTask from '../components/AddTask'
 
     export default {
         name: 'HomePage',
+        props: {
+            showAddTask: Boolean,
+        },
         components: {
             Tasks,
-            AddTask
+            AddTask,
         },
         // eslint-disable-next-line vue/no-shared-component-data
-        data: {
-            tasks: []
+        data() {
+            return {
+                tasks: [],
+            }
         },
         methods: {
         async addTask(task) {
